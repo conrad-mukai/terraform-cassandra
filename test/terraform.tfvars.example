@@ -1,0 +1,15 @@
+region = "us-west-2"
+environment = "my-env"
+ami = ""
+user = ""
+instance_type = ""
+key_name = ""
+private_key_path = ""
+bastion_private_key_path = ""
+authorized_key_path = ""
+availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c"]
+cidr_vpc = "172.16.0.0/16"
+allowed_ingress_list = [""]
+seed_addr = 10
+iam_instance_profile = ""
+cloudwatch_alarm_arn = ""
