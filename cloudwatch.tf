@@ -20,7 +20,7 @@ resource "aws_cloudwatch_metric_alarm" "seed-cpu-alarm" {
 
 resource "aws_cloudwatch_metric_alarm" "node-cpu-alarm" {
   count = "${aws_instance.nodes.count}"
-  alarm_name = "${format("%s-cass-cpu-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index % length(var.subnet_ids)), count.index/length(var.subnet_ids)+1)}"
+  alarm_name = "${format("%s-cass-cpu-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index), count.index/length(var.subnet_ids)+1)}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = "5"
   namespace = "AWS/EC2"
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_metric_alarm" "seed-status-alarm" {
 
 resource "aws_cloudwatch_metric_alarm" "node-status-alarm" {
   count = "${aws_instance.nodes.count}"
-  alarm_name = "${format("%s-cass-status-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index % length(var.subnet_ids)), count.index/length(var.subnet_ids)+1)}"
+  alarm_name = "${format("%s-cass-status-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index), count.index/length(var.subnet_ids)+1)}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods = "1"
   namespace = "AWS/EC2"
@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "seed-process-alarm" {
 
 resource "aws_cloudwatch_metric_alarm" "node-process-alarm" {
   count = "${aws_instance.nodes.count}"
-  alarm_name = "${format("%s-cass-proc-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index % length(var.subnet_ids)), count.index/length(var.subnet_ids)+1)}"
+  alarm_name = "${format("%s-cass-proc-%s-%02d", var.environment, element(data.aws_subnet.subnets.*.availability_zone, count.index), count.index/length(var.subnet_ids)+1)}"
   comparison_operator = "LessThanThreshold"
   evaluation_periods = "1"
   namespace = "CMXAM/Cassandra"
