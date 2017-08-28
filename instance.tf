@@ -3,7 +3,7 @@
  */
 
 resource "aws_instance" "seeds" {
-  count = "${length(var.seed_subnet_ids)}"
+  count = "${data.aws_subnet.seed_subnets.count}"
   ami = "${var.ami}"
   instance_type = "${var.instance_type}"
   vpc_security_group_ids = ["${var.security_group_ids}"]
@@ -18,11 +18,11 @@ resource "aws_instance" "seeds" {
 }
 
 resource "aws_instance" "nodes" {
-  count = "${var.nodes_per_az * length(var.subnet_ids)}"
+  count = "${var.nodes_per_az * data.aws_subnet.subnets.count}"
   ami = "${var.ami}"
   instance_type = "${var.instance_type}"
   vpc_security_group_ids = ["${var.security_group_ids}"]
-  subnet_id = "${var.subnet_ids[count.index]}"
+  subnet_id = "${var.subnet_ids[count.index % data.aws_subnet.subnets.count]}"
   key_name = "${var.key_name}"
   iam_instance_profile = "${var.iam_instance_profile}"
   ebs_optimized = true
