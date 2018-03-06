@@ -8,6 +8,6 @@ data "aws_subnet" "subnets" {
 }
 
 data "aws_subnet" "seed_subnets" {
-  count = "${var.subnet_count}"
+  count = "${var.seed_subnet_count}"
   id = "${var.seed_subnet_ids[count.index]}"
 }
