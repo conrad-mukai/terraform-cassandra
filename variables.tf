@@ -17,6 +17,11 @@ variable "nodes_per_az" {
   default = 1
 }
 
+variable "subnet_count" {
+  type = "string"
+  description = "Count of subnets"
+}
+
 variable "subnet_ids" {
   type = "list"
   description = "list of subnet IDs for non-seed nodes"
@@ -25,6 +30,11 @@ variable "subnet_ids" {
 variable "seed_subnet_ids" {
   type = "list"
   description = "list of subnet IDs for seed nodes (/24 CIDR)"
+}
+
+variable "seed_subnet_count" {
+  type = "string"
+  description = "count of subnet IDs for seed nodes (/24 CIDR)"
 }
 
 variable "seed_addr" {
